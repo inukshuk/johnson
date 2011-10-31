@@ -161,12 +161,14 @@ static VALUE attribute_p(VALUE self, VALUE name, ID id)
     VALUE klass = CLASS_OF(rb_method);
     if (klass == rb_cMethod)
     {
-      METHOD* method;
-      Data_Get_Struct(rb_method, METHOD, method);
-
-      if (method && nd_type(method->body) == NODE_IVAR) {
-        return Qtrue;
-      }
+			// #21 The METHOD struct has changed in Ruby 1.9
+			//
+      // METHOD* method;
+      // Data_Get_Struct(rb_method, METHOD, method);
+      // 
+      // if (method && nd_type(method->body) == NODE_IVAR) {
+      //   return Qtrue;
+      // }
     }
   }
 
